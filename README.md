@@ -11,7 +11,7 @@
 	* Show the player's vertical/horizontal velocity and horizontal direction
 
 # How to Install to Lorn's Lure
-* Install MelonLoader with the "Automated Installation" section
+* Install MelonLoader with the "Automated Installation" section from [MelonWiki](https://melonwiki.xyz/#/?id=requirements)
 * Add the "SpeedrunnerHelper.dll" from Releases to a "Mods" folder inside the game install folder
 
 For further help, consult google/youtube tutorials
