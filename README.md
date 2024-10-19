@@ -17,5 +17,5 @@
 For further help, consult google/youtube tutorials
 
 # Youtube Showcase
-v0.1.0
- [![Youtube Showcase v0.1.0](http://img.youtube.com/vi/fVa6GTA-NIs/0.jpg)](https://www.youtube.com/watch?v=fVa6GTA-NIs "Visible Checkpoints and End Trigger Showcase | Lorn's Lure Mod")
+v0.1.0\
+[![Youtube Showcase v0.1.0](http://img.youtube.com/vi/fVa6GTA-NIs/0.jpg)](https://www.youtube.com/watch?v=fVa6GTA-NIs "Visible Checkpoints and End Trigger Showcase | Lorn's Lure Mod")
