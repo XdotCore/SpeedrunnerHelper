@@ -1,0 +1,52 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net481</TargetFramework>
+		<OutputType>Library</OutputType>
+		<LangVersion>12</LangVersion>
+		<DefineConstants>$(DefineConstants);IS_MOD</DefineConstants>
+		<Version>0.1.0</Version>
+		<FileVersion>$(Version)</FileVersion>
+		<AssemblyVersion>$(Version)</AssemblyVersion>
+	</PropertyGroup>
+	<Import Project="gameinstall.target" />
+	<ItemGroup>
+		<Reference Include="0Harmony">
+			<HintPath>$(GameInstallPath)\MelonLoader\net35\0Harmony.dll</HintPath>
+		</Reference>
+		<Reference Include="Assembly-CSharp">
+			<HintPath>$(GameInstallPath)\LornsLure_Data\Managed\Assembly-CSharp.dll</HintPath>
+		</Reference>
+		<Reference Include="MelonLoader">
+			<HintPath>$(GameInstallPath)\MelonLoader\net35\MelonLoader.dll</HintPath>
+		</Reference>
+		<Reference Include="Unity.Localization">
+			<HintPath>$(GameInstallPath)\LornsLure_Data\Managed\Unity.Localization.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.AssetBundleModule">
+			<HintPath>$(GameInstallPath)\LornsLure_Data\Managed\UnityEngine.AssetBundleModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.AudioModule">
+			<HintPath>$(GameInstallPath)\LornsLure_Data\Managed\UnityEngine.AudioModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.CoreModule">
+			<HintPath>$(GameInstallPath)\LornsLure_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.PhysicsModule">
+			<HintPath>$(GameInstallPath)\LornsLure_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.UI">
+			<HintPath>$(GameInstallPath)\LornsLure_Data\Managed\UnityEngine.UI.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="..\SpeedrunnerHelperUnity\Assets\Editor\**\*.cs" Link="Unity\Editor\%(RecursiveDir)%(FileName)%(Extension)" />
+		<Compile Include="..\SpeedrunnerHelperUnity\Assets\Scripts\**\*.cs" Link="Unity\Scripts\%(RecursiveDir)%(FileName)%(Extension)" />
+		<EmbeddedResource Include="..\SpeedrunnerHelperUnity\Assets\AssetBundles\revisible" Link="Unity\AssetBundles\revisible" />
+		<EmbeddedResource Include="..\SpeedrunnerHelperUnity\Assets\AssetBundles\settings" Link="Unity\AssetBundles\settings" />
+		<None Include="gameinstall.target" />
+	</ItemGroup>
+	<Target Name="CopyToGameInstall" AfterTargets="AfterBuild">
+		<Copy SourceFiles="$(TargetPath)" DestinationFolder="$(GameInstallPath)/Mods" />
+		<Message Text="Copied to Game Install" Importance="High" />
+	</Target>
+</Project>
