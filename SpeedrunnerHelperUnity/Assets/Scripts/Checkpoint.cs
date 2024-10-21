@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Diagnostics;
 
 
 #if IS_MOD
@@ -16,27 +17,37 @@ namespace SpeedrunnerHelper {
         protected override MelonPreferences_Entry<bool> VisibleEntry => SpeedrunSettings.VisibleCheckpoints;
         protected override MelonPreferences_Entry<float> OpacityEntry => SpeedrunSettings.CheckpointOpacity;
 
-        protected override void Awake() => base.Awake();
+        public Material Material { get; set; }
+        public Material SelectedMaterial { get; set; }
+        protected static Checkpoint selected = null;
+
+        protected override void Awake() {
+            GetComponent<MeshRenderer>().material = Instantiate(Material);
+            base.Awake();
+        }
+
         protected override void OnDestroy() => base.OnDestroy();
 
-        public static Material Material { get; set; }
-        public static Material SelectedMaterial { get; set; }
-        private static Checkpoint selected = null;
+        private static Checkpoint GetCheckpointFrom(Transform t) {
+            if (t.GetComponent<CheckpointSet>() is null && t.GetComponent<ClimberOrFlowingObjectCheckpoint>() is null)
+                return null;
+            return t.GetComponentInChildren<Checkpoint>();
+        }
 
         [HarmonyPatch(typeof(CheckpointStore), "SetNewCheckpoint")]
         [HarmonyPostfix]
-        private static void SwapSelected(Transform t) {
-            Checkpoint newSelected = t.GetComponentInChildren<Checkpoint>();
+        private static void SwapSelectedCheckpoint(Transform t) {
+            Checkpoint newSelected = GetCheckpointFrom(t) ?? GetCheckpointFrom(t.parent);
             if (newSelected is null || ReferenceEquals(newSelected, selected))
                 return;
 
-            Material selectedMaterial = Instantiate(SelectedMaterial);
+            Material selectedMaterial = Instantiate(newSelected.SelectedMaterial);
             SetAlpha(selectedMaterial, SpeedrunSettings.CheckpointOpacity.Value);
             newSelected.GetComponent<MeshRenderer>().material = selectedMaterial;
 
             // using unity's override to check if null or destroyed
             if (selected != null) {
-                Material material = Instantiate(Material);
+                Material material = Instantiate(selected.Material);
                 SetAlpha(material, SpeedrunSettings.CheckpointOpacity.Value);
                 selected.GetComponent<MeshRenderer>().material = material;
             }

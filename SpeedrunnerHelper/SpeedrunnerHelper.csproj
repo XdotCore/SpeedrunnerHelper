@@ -22,6 +22,9 @@
 		<Reference Include="Unity.Localization">
 			<HintPath>$(GameInstallPath)\LornsLure_Data\Managed\Unity.Localization.dll</HintPath>
 		</Reference>
+		<Reference Include="UnityEngine.AnimationModule">
+			<HintPath>$(GameInstallPath)\LornsLure_Data\Managed\UnityEngine.AnimationModule.dll</HintPath>
+		</Reference>
 		<Reference Include="UnityEngine.AssetBundleModule">
 			<HintPath>$(GameInstallPath)\LornsLure_Data\Managed\UnityEngine.AssetBundleModule.dll</HintPath>
 		</Reference>
@@ -41,6 +44,7 @@
 	<ItemGroup>
 		<None Include="..\SpeedrunnerHelperUnity\Assets\Editor\**\*.cs" Link="Unity\Editor\%(RecursiveDir)%(FileName)%(Extension)" />
 		<Compile Include="..\SpeedrunnerHelperUnity\Assets\Scripts\**\*.cs" Link="Unity\Scripts\%(RecursiveDir)%(FileName)%(Extension)" />
+		<Compile Remove="..\SpeedrunnerHelperUnity\Assets\Scripts\BoatCheckpoint.cs" />
 		<EmbeddedResource Include="..\SpeedrunnerHelperUnity\Assets\AssetBundles\revisible" Link="Unity\AssetBundles\revisible" />
 		<EmbeddedResource Include="..\SpeedrunnerHelperUnity\Assets\AssetBundles\settings" Link="Unity\AssetBundles\settings" />
 		<None Include="gameinstall.target" />

@@ -13,9 +13,5 @@ namespace SpeedrunnerHelper {
         public override void OnInitializeMelon() {
             Logger = LoggerInstance;
         }
-
-        public override void OnSceneWasInitialized(int buildIndex, string sceneName) {
-            Revisible.ShowCheckpointsAndEndTrigger();
-        }
     }
 }
