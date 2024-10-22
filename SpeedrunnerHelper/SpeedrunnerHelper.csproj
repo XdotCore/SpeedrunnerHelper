@@ -4,7 +4,7 @@
 		<OutputType>Library</OutputType>
 		<LangVersion>12</LangVersion>
 		<DefineConstants>$(DefineConstants);IS_MOD</DefineConstants>
-		<Version>0.1.0</Version>
+		<Version>0.1.1</Version>
 		<FileVersion>$(Version)</FileVersion>
 		<AssemblyVersion>$(Version)</AssemblyVersion>
 	</PropertyGroup>

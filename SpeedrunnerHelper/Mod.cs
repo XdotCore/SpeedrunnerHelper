@@ -1,6 +1,6 @@
 ﻿using MelonLoader;
 
-[assembly: MelonInfo(typeof(SpeedrunnerHelper.Mod), "Speedrunner Helper", "0.1.0", "X.Core")]
+[assembly: MelonInfo(typeof(SpeedrunnerHelper.Mod), "Speedrunner Helper", "0.1.1", "X.Core")]
 [assembly: MelonGame("Rubeki Games", "LornsLure")]
 
 // TODO: hide fog
