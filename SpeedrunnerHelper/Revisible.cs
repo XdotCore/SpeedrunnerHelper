@@ -2,7 +2,6 @@
 using System.IO;
 using System.Reflection;
 using UnityEngine;
-using static MelonLoader.MelonLogger;
 
 namespace SpeedrunnerHelper {
     [HarmonyPatch]

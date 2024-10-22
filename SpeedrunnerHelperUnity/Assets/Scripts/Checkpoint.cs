@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System.Diagnostics;
-
 
 #if IS_MOD
 using MelonLoader;

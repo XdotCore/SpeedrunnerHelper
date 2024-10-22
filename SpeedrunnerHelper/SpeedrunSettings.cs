@@ -40,7 +40,7 @@ namespace SpeedrunnerHelper {
         [HarmonyPatch(typeof(GameOptions), "Awake")]
         [HarmonyPrefix]
         private static void AddGUI(GameOptions __instance) {
-            void RemoveCloneInName(GameObject go) =>
+            static void RemoveCloneInName(GameObject go) =>
                 go.name = go.name.Replace("(Clone)", "");
 
             // Creating the form
@@ -52,11 +52,14 @@ namespace SpeedrunnerHelper {
 
             // Adding the section toggle button
             Transform sectionMenu = __instance.transform.Find("Window/SectionMenu");
+            RectTransform lastToggle = sectionMenu.GetChild(sectionMenu.childCount - 1) as RectTransform;
             GameObject sectionToggle = Object.Instantiate(settingsBundle.LoadAsset<GameObject>("Speedrunner_MenuButton"), sectionMenu);
             RemoveCloneInName(sectionToggle);
 
             sectionToggle.GetComponent<SectionToggle>().SectionIndex = sectionIndex;
             sectionToggle.GetComponent<Toggle>().group = sectionMenu.GetComponent<ToggleGroup>();
+
+            sectionToggle.transform.localPosition = new Vector3(sectionToggle.transform.localPosition.x, lastToggle.localPosition.y - lastToggle.rect.height);
         }
 
         [HarmonyPatch(typeof(GameOptions), "ShowOptionsForm")]
